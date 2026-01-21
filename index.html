@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="shortcut icon" href="favicon.ico">
 
-  <meta name="description" content="Aerden LLC provides advice-only, one-time financial planning sessions via Zoom or phone. Book a 60-minute Money Strategy Session.">
+  <meta name="description" content="Aerden LLC provides advice-only financial planning services. Choose from a one-time Strategy Session, comprehensive Full Financial Plan, or Ongoing Planning support.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,14 +52,25 @@
     .section { padding: 56px 0; }
     .section.alt { background: #fff; }
 
-    .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 20px; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-    .card h3 { margin: 0 0 10px; }
-    .checklist, .xlist { padding-left: 18px; margin: 0 0 16px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .pricing-card { background: #fff; border: 2px solid #eee; border-radius: 16px; padding: 28px 24px; position: relative; display: flex; flex-direction: column; }
+    .pricing-card.featured { border-color: #1f2328; box-shadow: 0 8px 24px rgba(0,0,0,.08); transform: scale(1.02); }
+    .pricing-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #1f2328; color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.3px; }
+    .pricing-header { text-align: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 20px; }
+    .pricing-title { font-size: 20px; font-weight: 700; margin: 0 0 8px; }
+    .pricing-price { font-size: 36px; font-weight: 800; margin: 8px 0; }
+    .pricing-term { font-size: 14px; color: #687076; }
+    .pricing-subtitle { font-size: 14px; color: #3b3f44; margin: 12px 0 0; font-weight: 500; }
+    .pricing-features { list-style: none; padding: 0; margin: 0 0 24px; flex: 1; }
+    .pricing-features li { padding: 10px 0; font-size: 14px; line-height: 1.5; border-bottom: 1px solid #f5f5f5; }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-disclaimer { font-size: 12px; color: #687076; line-height: 1.4; margin-top: 16px; padding-top: 16px; border-top: 1px solid #f5f5f5; }
 
-    .btn { display: inline-block; padding: 12px 16px; border-radius: 12px; text-decoration: none; font-weight: 600; border: 1px solid #1f2328; }
+    .btn { display: inline-block; padding: 12px 16px; border-radius: 12px; text-decoration: none; font-weight: 600; border: 1px solid #1f2328; transition: all 0.2s; }
     .btn-primary { background: #1f2328; color: #fff; }
+    .btn-primary:hover { background: #2d3540; }
     .btn-outline { background: #fff; color: #1f2328; }
+    .btn-outline:hover { background: #f5f5f5; }
     .btn.full { display: block; text-align: center; }
 
     .fineprint { font-size: 12px; color: #687076; }
@@ -83,7 +95,7 @@
     .footer-col.small { font-size: 12px; color: #687076; }
     .links { display: flex; flex-direction: column; gap: 8px; }
 
-    .section-intro { max-width: 580px; margin: 8px auto 28px; text-align: center; color: #3b3f44; }
+    .section-intro { max-width: 680px; margin: 8px auto 28px; text-align: center; color: #3b3f44; }
 
     .help-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 32px; }
     .help-item { text-align: center; font-size: 14px; color: #1f2328; display: flex; flex-direction: column; align-items: center; gap: 12px; }
@@ -93,8 +105,16 @@
     .about-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
     .gallery-item img { width: 100%; height: 260px; object-fit: cover; border-radius: 14px; }
 
+    .decision-helper { background: #f9f9f8; border: 1px solid #e8e6e0; border-radius: 16px; padding: 32px; margin-top: 48px; }
+    .decision-helper h3 { margin: 0 0 20px; text-align: center; }
+    .decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .decision-item { background: #fff; border-radius: 12px; padding: 20px; }
+    .decision-item h4 { margin: 0 0 12px; font-size: 16px; }
+    .decision-item p { font-size: 14px; color: #3b3f44; line-height: 1.6; margin: 0; }
+
     @media (max-width: 900px) {
-      .cards { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: scale(1); }
       .about-wrap { grid-template-columns: 1fr; }
       .footer-wrap { grid-template-columns: 1fr; }
       .hero h1 { font-size: 32px; }
@@ -103,6 +123,7 @@
       .help-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
       .about-gallery { grid-template-columns: 1fr; }
       .gallery-item img { height: 220px; }
+      .decision-grid { grid-template-columns: 1fr; }
     }
 
     .creds-list { margin: 8px 0 0; padding-left: 20px; }
@@ -121,7 +142,7 @@
     .header-nav .book-btn { background: #1e1f21; color: white; padding: 10px 22px; border-radius: 12px; }
 
     section { scroll-margin-top: 80px; }
-    #details { scroll-margin-top: 90px; }
+    #services { scroll-margin-top: 90px; }
 
     .site-footer { border-top: 1px solid #e0e0e0; padding: 32px 40px 24px; font-size: 14px; color: #404040; background-color: #ffffff; }
     .footer-inner { display: flex; justify-content: space-between; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
@@ -241,19 +262,17 @@
   <img src="static/ap-logo-transparent.png" alt="Aerden Planning Logo" class="hero-logo">
 </div>
 <h1>
-  One session. One hour.<br>
-  Real clarity.
+  Financial clarity,<br>
+  on your terms.
 </h1>
 
-          <p>A simple, one-time financial planning session focused on what matters most to you, helping you make sense of your financial picture and move forward with clear, practical next steps.</p>
+          <p>Whether you need targeted guidance on a specific question or comprehensive planning support, I provide straightforward advice-only financial planning designed around your needs and goals.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="https://calendly.com/aerdenplanning/60min" target="_blank">Book a 60-Minute Session</a>
-            <a class="btn btn-outline" href="#details">What’s included</a>
+            <a class="btn btn-primary" href="#services">View Services</a>
+            <a class="btn btn-outline" href="#about">About Me</a>
           </div>
           <div class="trust-row">
-            <span>CFP® Professional • Fiduciary Standard • Zoom or Phone • Flat Fee $225</span>
-            <span> </span>
-            <span></span>
+            <span>CFP® Professional • Fiduciary Standard • Three Service Options • Starting at $225</span>
           </div>
         </div>
         <div class="hero-image">
@@ -264,41 +283,108 @@
 
  <section id="services" class="section">
   <div class="container">
-    <h2 id="details">Money Strategy Session</h2>
+    <h2 style="text-align: center; margin-bottom: 8px;">Planning Services</h2>
+    <p class="section-intro">
+      Choose the level of support that fits your current needs. All services are advice-only. I don't manage investments, place trades, or take custody of your accounts.
+    </p>
 
-        <div class="cards">
-          <div class="card">
-            <h3>60 minutes • $225</h3>
-            <ul class="checklist">
-                <li>A short pre-session questionnaire to help us make the most of our time together</li>
-              <li>A relaxed Zoom or phone session focused on your questions and priorities</li>
-              <li>Help understanding your financial picture with simple and easy to follow explanations</li>
-              <li>A summary email with the session's key takeaways, next actions & resources</li>
-            </ul>
-            <a class="btn btn-primary full" href="https://calendly.com/aerdenplanning/60min" target="_blank">Schedule</a>
-            <div class="fineprint">Paid at booking. You may reschedule up to two times. After two reschedules the fee is non-refundable. A third reschedule requires a new fee.</div>
-          </div>
-          <div class="card" id="details">
-            <h3>What I do not do</h3>
-            <ul class="xlist">
-              <li>Manage investments on an ongoing basis</li>
-              <li>Charge fees based on your assets or AUM billing</li>
-              <li>Place trades or monitor accounts</li>
-              <li>Sell products or receive commissions</li>
-              <li>Have affiliations with financial firms or product providers</li>
-              <li>Take control of your money</li>
-            </ul>
-            <div class="fineprint">You maintain full control and are responsible for making any changes with your chosen provider.</div>
-          </div>
+    <div class="pricing-grid">
+      
+      <!-- Strategy Session -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div class="pricing-title">Strategy Session</div>
+          <div class="pricing-price">$225</div>
+          <div class="pricing-term">One-time</div>
+          <div class="pricing-subtitle">Perfect for specific questions or a second opinion</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Single 60-minute planning meeting via Zoom or phone</li>
+          <li>Pre-session questionnaire to focus our time</li>
+          <li>Targeted guidance on 1-2 specific financial topics</li>
+          <li>Written summary with key takeaways and next steps</li>
+          <li>No comprehensive analysis or document review</li>
+        </ul>
+        <a class="btn btn-primary full" href="https://calendly.com/aerdenplanning/60min" target="_blank">Book Now</a>
+        <div class="pricing-disclaimer">
+          Paid at booking. You may reschedule up to two times. After two reschedules the fee is non-refundable.
         </div>
       </div>
-    </section>
+
+      <!-- Full Financial Plan (Featured) -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Comprehensive</div>
+        <div class="pricing-header">
+          <div class="pricing-title">Full Financial Plan</div>
+          <div class="pricing-price">$2,500</div>
+          <div class="pricing-term">One-time</div>
+          <div class="pricing-subtitle">Complete roadmap for your financial future</div>
+        </div>
+        <ul class="pricing-features">
+          <li>In-depth intake process and document review</li>
+          <li>Analysis across multiple planning areas (retirement, investing, cash flow, risk management)</li>
+          <li>Typically includes an intake session, discovery and goal setting session, plan presentation and implementation guidance</li>
+          <li>Written financial plan with prioritized recommendations</li>
+          <li>Multiple planning meetings over a defined period</li>
+          <li>Implementation guidance and coordination (no execution or monitoring)</li>
+        </ul>
+        <a class="btn btn-primary full" href="/contact.html">Get Started</a>
+        <div class="pricing-disclaimer">
+          Paid in advance. If terminated before delivery, unearned fees refunded (work billed at $225/hour).
+        </div>
+      </div>
+
+      <!-- Ongoing Planning -->
+      <div class="pricing-card">
+        <div class="pricing-header">
+          <div class="pricing-title">Ongoing Planning</div>
+          <div class="pricing-price">$292</div>
+          <div class="pricing-term">Per month</div>
+          <div class="pricing-subtitle">Evolving support as your life changes</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Quarterly planning meetings and ongoing support</li>
+          <li>Review of progress toward stated goals</li>
+          <li>Updates to planning assumptions as circumstances change</li>
+          <li>Client-initiated planning questions between meetings</li>
+          <li>Annual plan update available after cumulative fees equal original Full Plan cost</li>
+          <li>Does not include discretionary management or continuous monitoring</li>
+        </ul>
+        <a class="btn btn-primary full" href="/contact.html">Learn More</a>
+        <div class="pricing-disclaimer">
+          Billed quarterly in advance. Either party may terminate with written notice. Unearned fees refunded pro-rata.
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Decision Helper -->
+    <div class="decision-helper">
+      <h3>Which service is right for me?</h3>
+      <div class="decision-grid">
+        <div class="decision-item">
+          <h4>Choose Strategy Session if:</h4>
+          <p>You have 1-2 specific questions (like "Should I do a Roth conversion?" or "How should I invest this windfall?") and want targeted guidance without a full plan.</p>
+        </div>
+        <div class="decision-item">
+          <h4>Choose Full Financial Plan if:</h4>
+          <p>You want a comprehensive view of your entire financial picture with a written roadmap covering retirement, investing, cash flow, and other major planning areas.</p>
+        </div>
+        <div class="decision-item">
+          <h4>Choose Ongoing Planning if:</h4>
+          <p>Your financial situation is complex or changing, and you want continued support and accountability as you work toward your goals over time.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 
     <section id="help" class="section alt">
       <div class="container">
         <h2>How I can help</h2>
         <p class="section-intro">
-          Use your session for the areas where you want the most clarity, whether that is retirement, investing, or day-to-day decisions about balancing money now with planning for the future.
+          Whether you choose a Strategy Session, Full Financial Plan, or Ongoing Planning, I can provide guidance across all of these areas based on what matters most to you.
         </p>
 
         <div class="help-grid">
@@ -388,7 +474,7 @@
     <div class="about-text">
       <h2>About</h2>
 
-      <p>I help people understand their money and feel confident managing it. I’ve spent the last decade working with investors at every stage of their financial journey.</p>
+      <p>I help people understand their money and feel confident managing it. I've spent the last decade working with investors at every stage of their financial journey.</p>
 
       <p>I spent four years at Vanguard helping individuals and small business owners understand their money and make thoughtful plans for retirement and other goals. I also worked with financial advisors, helping them create simpler, lower-cost investment strategies for their clients.</p>
 
@@ -401,7 +487,7 @@
         <li>BSBA in Marketing, Western Carolina University</li>
         <li>CFP® certification (CERTIFIED FINANCIAL PLANNER®)
           <ul class="cfp-sublist">
-            <li>Completion of CFP Board–approved coursework</li>
+            <li>Completion of CFP Board-approved coursework</li>
             <li>Passing the comprehensive CFP® certification exam</li>
             <li>Meeting the required financial planning experience standards</li>
             <li>Commitment to ongoing continuing education and ethical practice</li>
@@ -417,10 +503,10 @@
       </div>
 
       <div class="about-card">
-        <div class="about-stamp">Flat Fee</div>
+        <div class="about-stamp">Starting at</div>
         <div class="about-price">$225</div>
-        <div class="about-caption">60-minute session</div>
-        <a class="btn btn-primary full" href="https://calendly.com/aerdenplanning/60min" target="_blank">Book Now</a>
+        <div class="about-caption">Three service options available</div>
+        <a class="btn btn-primary full" href="#services">View Services</a>
       </div>
     </div>
 
@@ -460,22 +546,57 @@
       <div class="container">
         <h2>FAQ</h2>
         <div class="faq">
+          
           <details>
-            <summary>How do I pay?</summary>
-            <p>Payment is collected at the time of booking through the scheduling link. The fee is non-refundable.</p>
+            <summary>Which service should I choose?</summary>
+            <p>Choose the Strategy Session if you have 1-2 specific questions. Choose the Full Financial Plan if you want a comprehensive written roadmap. Choose Ongoing Planning if you want continued support as your situation evolves.</p>
           </details>
+
           <details>
-            <summary>Can I reschedule?</summary>
+            <summary>How do I pay for the Strategy Session?</summary>
+            <p>Payment is collected at the time of booking through the scheduling link. The fee is non-refundable after the session.</p>
+          </details>
+          
+          <details>
+            <summary>Can I reschedule my Strategy Session?</summary>
             <p>You may reschedule up to two times at no additional cost, as long as changes are made at least 48 hours before your session. A third reschedule requires a new fee. Missed sessions without the required notice will result in a forfeited fee.</p>
           </details>
+
+          <details>
+            <summary>Can I upgrade from a Strategy Session to a Full Plan?</summary>
+            <p>Yes. If you decide you'd like more comprehensive planning after a Strategy Session, we can discuss moving forward with a Full Financial Plan. The $225 Strategy Session fee is separate and does not apply toward the Full Plan fee.</p>
+          </details>
+
+          <details>
+            <summary>What's included in the Full Financial Plan?</summary>
+            <p>The Full Financial Plan includes an in-depth intake process, review of relevant documents, analysis across multiple planning areas (retirement, investing, cash flow, risk management), a written financial plan with prioritized recommendations, and multiple planning meetings over a defined engagement period.</p>
+          </details>
+
+          <details>
+            <summary>How does payment work for the Full Financial Plan and Ongoing Planning?</summary>
+            <p>The Full Financial Plan fee ($2,500) is paid in advance before services begin. Ongoing Planning is billed quarterly in advance at $875 per quarter. If you terminate either service early, any unearned fees will be refunded.</p>
+          </details>
+
+          <details>
+            <summary>What's the annual plan update for Ongoing Planning clients?</summary>
+            <p>Clients in the Ongoing Planning Relationship who have previously completed a paid Full Financial Plan may receive an annual update to their original plan once cumulative ongoing fees paid equal or exceed the original Full Plan fee. This update is limited in scope and reflects changes to your circumstances.</p>
+          </details>
+
           <details>
             <summary>Do you manage investments?</summary>
-            <p>No. Services are advice only. You keep full control and implement your own decisions at your own service provider.</p>
+            <p>No. All services are advice-only. You keep full control and implement your own decisions with your chosen service provider.</p>
           </details>
+          
           <details>
-            <summary>Do you take custody or place trades?</summary>
-            <p>No. The firm does not take custody, execute trades, or monitor accounts.</p>
+            <summary>Do you take custody of accounts or place trades?</summary>
+            <p>No. The firm does not take custody, execute trades, or monitor accounts on an ongoing basis.</p>
           </details>
+
+          <details>
+            <summary>What don't you do?</summary>
+            <p>I do not manage investments on an ongoing basis, charge asset-based fees (AUM billing), place trades or monitor accounts continuously, sell products or receive commissions, have affiliations with financial firms or product providers, or take control of your money. You maintain full control and are responsible for making any changes with your chosen provider.</p>
+          </details>
+
         </div>
       </div>
     </section>
