@@ -7,11 +7,9 @@
   <title>Aerden LLC | Advice-Only Financial Planning</title>
 
 <!-- Favicons -->
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="shortcut icon" href="favicon.ico">
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/aerdenllcfavicon.png">
+
 
   <meta name="description" content="Aerden LLC provides advice-only financial planning services. Choose from a one-time Strategy Session, comprehensive Full Financial Plan, or Ongoing Planning support.">
 
@@ -194,6 +192,42 @@
     @media (max-width: 768px) {
       #services, #about, #faq { scroll-margin-top: 110px; }
     }
+     .pricing-grid.two-up{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:28px;
+    align-items:stretch;
+    max-width:1100px;
+    margin:0 auto;
+  }
+  .pricing-grid.two-up .pricing-card{
+    height:100%;
+  }
+  .pricing-grid.two-up .pricing-card.featured{
+    transform:translateY(-6px);
+  }
+  @media (max-width: 900px){
+    .pricing-grid.two-up{
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+    .pricing-grid.two-up .pricing-card.featured{
+      transform:none;
+    }
+  }
+   .decision-grid.two-up{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:28px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  @media (max-width: 900px){
+    .decision-grid.two-up{
+      grid-template-columns:1fr;
+      gap:18px;
+    }
+  }
   </style>
 </head>
 <body>
@@ -201,9 +235,9 @@
   <div class="container header-wrap">
 
     <div class="brand">
-      <img src="static/ap-icon-64.png" alt="Aerden logo" class="brand-logo">
+      <img src="static/aerdenllcfavicon.png" alt="Aerden logo" class="brand-logo">
       <div class="brand-text">
-        <div class="brand-name">Aerden Planning</div>
+        <div class="brand-name">Aerden LLC</div>
         <div class="brand-tagline">Simple financial advice, built around you.</div>
       </div>
     </div>
@@ -259,7 +293,7 @@
       <div class="container hero-wrap">
         <div class="hero-text">
             <div class="logo-wrapper">
-  <img src="static/ap-logo-transparent.png" alt="Aerden Planning Logo" class="hero-logo">
+  <img src="static/aerdenllctransparent.png" alt="Aerden Planning Logo" class="hero-logo">
 </div>
 <h1>
   Financial clarity,<br>
@@ -272,7 +306,7 @@
             <a class="btn btn-outline" href="#about">About Me</a>
           </div>
           <div class="trust-row">
-            <span>CFP® Professional • Fiduciary Standard • Three Service Options • Starting at $225</span>
+            <span>CFP® Professional • Fiduciary Standard • Two Service Options • Starting at $225</span>
           </div>
         </div>
         <div class="hero-image">
@@ -288,103 +322,84 @@
       Choose the level of support that fits your current needs. All services are advice-only. I don't manage investments, place trades, or take custody of your accounts.
     </p>
 
-    <div class="pricing-grid">
-      
-      <!-- Strategy Session -->
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <div class="pricing-title">Strategy Session</div>
-          <div class="pricing-price">$225</div>
-          <div class="pricing-term">One-time</div>
-          <div class="pricing-subtitle">Perfect for specific questions or a second opinion</div>
-        </div>
-        <ul class="pricing-features">
-          <li>Single 60-minute planning meeting via Zoom or phone</li>
-          <li>Pre-session questionnaire to focus our time</li>
-          <li>Targeted guidance on 1-2 specific financial topics</li>
-          <li>Written summary with key takeaways and next steps</li>
-          <li>No comprehensive analysis or document review</li>
-        </ul>
-        <a class="btn btn-primary full" href="https://calendly.com/aerdenplanning/60min" target="_blank">Book Now</a>
-        <div class="pricing-disclaimer">
-          Paid at booking. You may reschedule up to two times. After two reschedules the fee is non-refundable.
-        </div>
-      </div>
+    <div class="pricing-grid two-up">
 
-      <!-- Full Financial Plan (Featured) -->
-      <div class="pricing-card featured">
-        <div class="pricing-badge">Most Comprehensive</div>
-        <div class="pricing-header">
-          <div class="pricing-title">Full Financial Plan</div>
-          <div class="pricing-price">$2,500</div>
-          <div class="pricing-term">One-time</div>
-          <div class="pricing-subtitle">Complete roadmap for your financial future</div>
-        </div>
-        <ul class="pricing-features">
-          <li>In-depth intake process and document review</li>
-          <li>Analysis across multiple planning areas (retirement, investing, cash flow, risk management)</li>
-          <li>Typically includes an intake session, discovery and goal setting session, plan presentation and implementation guidance</li>
-          <li>Written financial plan with prioritized recommendations</li>
-          <li>Multiple planning meetings over a defined period</li>
-          <li>Implementation guidance and coordination (no execution or monitoring)</li>
-        </ul>
-        <a class="btn btn-primary full" href="/contact.html">Get Started</a>
-        <div class="pricing-disclaimer">
-          Paid in advance. If terminated before delivery, unearned fees refunded (work billed at $225/hour).
-        </div>
-      </div>
-
-      <!-- Ongoing Planning -->
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <div class="pricing-title">Ongoing Planning</div>
-          <div class="pricing-price">$292</div>
-          <div class="pricing-term">Per month</div>
-          <div class="pricing-subtitle">Evolving support as your life changes</div>
-        </div>
-        <ul class="pricing-features">
-          <li>Quarterly planning meetings and ongoing email support</li>
-          <li>Review of progress toward stated goals</li>
-          <li>Updates to planning assumptions as circumstances change</li>
-          <li>Client-initiated planning questions between meetings</li>
-          <li>Annual plan update available if prior Full Plan purchased after cumulative fees equal original Full Plan cost</li>
-          <li>Does not include discretionary management or continuous monitoring</li>
-        </ul>
-        <a class="btn btn-primary full" href="/contact.html">Learn More</a>
-        <div class="pricing-disclaimer">
-          Billed quarterly in advance. Either party may terminate with written notice. Unearned fees refunded pro-rata.
-        </div>
-      </div>
-
+  <!-- Strategy Session -->
+  <div class="pricing-card">
+    <div class="pricing-header">
+      <div class="pricing-title">Strategy Session</div>
+      <div class="pricing-price">$225</div>
+      <div class="pricing-term">One-time</div>
+      <div class="pricing-subtitle">Perfect for specific questions or a second opinion</div>
     </div>
-
-    <!-- Decision Helper -->
-    <div class="decision-helper">
-      <h3>Which service is right for me?</h3>
-      <div class="decision-grid">
-        <div class="decision-item">
-          <h4>Choose Strategy Session if:</h4>
-          <p>You have 1-2 specific questions (like "How do I better organize my finances?" or "How should I start investing?") and want targeted guidance without a full plan.</p>
-        </div>
-        <div class="decision-item">
-          <h4>Choose Full Financial Plan if:</h4>
-          <p>You want a comprehensive view of your entire financial picture with a written roadmap covering retirement, investing, cash flow, and other major planning areas.</p>
-        </div>
-        <div class="decision-item">
-          <h4>Choose Ongoing Planning if:</h4>
-          <p>Your financial situation is complex or changing, and you want continued support and accountability as you work toward your goals over time.</p>
-        </div>
-      </div>
+    <ul class="pricing-features">
+      <li>Single 60-minute planning meeting via Zoom or phone</li>
+      <li>Pre-session questionnaire to focus our time</li>
+      <li>Targeted guidance on 1-2 specific financial topics</li>
+      <li>Written summary with key takeaways and next steps</li>
+      <li>No comprehensive analysis or document review</li>
+    </ul>
+    <a class="btn btn-primary full" href="https://calendly.com/aerdenplanning/60min" target="_blank" rel="noopener">Book Now</a>
+    <div class="pricing-disclaimer">
+      Paid at booking. You may reschedule up to two times. After two reschedules the fee is non-refundable.
     </div>
-
   </div>
+
+  <!-- Full Financial Plan (Featured) -->
+  <div class="pricing-card featured">
+    <div class="pricing-badge">Most Comprehensive</div>
+    <div class="pricing-header">
+      <div class="pricing-title">Full Financial Plan</div>
+      <div class="pricing-price">$2,500</div>
+      <div class="pricing-term">One-time</div>
+      <div class="pricing-subtitle">Complete roadmap for your financial future</div>
+    </div>
+    <ul class="pricing-features">
+      <li>In-depth intake process and document review</li>
+      <li>Analysis across multiple planning areas (retirement, investing, cash flow, risk management)</li>
+      <li>Typically includes an intake session, discovery and goal setting session, plan presentation and implementation guidance</li>
+      <li>Written financial plan with prioritized recommendations</li>
+      <li>Multiple planning meetings over a defined period</li>
+      <li>Implementation guidance and coordination (no execution or monitoring)</li>
+    </ul>
+    <a class="btn btn-primary full" href="/contact.html">Get Started</a>
+    <div class="pricing-disclaimer">
+      Paid in advance. If terminated before delivery, unearned fees refunded (work billed at $225/hour).
+    </div>
+  </div>
+
+</div>
+
+<!-- Decision Helper -->
+<div class="decision-helper">
+  <h3>Which service is right for me?</h3>
+  <div class="decision-grid two-up">
+    <div class="decision-item">
+      <h4>Choose a Strategy Session if:</h4>
+      <p>
+        You have 1–2 specific questions (for example, how to better organize your finances,
+        where to start with investing, or how to think through a decision) and want focused,
+        practical guidance without committing to a full financial plan.
+      </p>
+    </div>
+
+    <div class="decision-item">
+      <h4>Choose a Full Financial Plan if:</h4>
+      <p>
+        You want a comprehensive view of your entire financial picture, including retirement,
+        investing, cash flow, and risk considerations, with a written roadmap and clear next
+        steps tailored to your goals.
+      </p>
+    </div>
+  </div>
+</div>
 </section>
 
     <section id="help" class="section alt">
       <div class="container">
         <h2>How I can help</h2>
         <p class="section-intro">
-          Whether you choose a Strategy Session, Full Financial Plan, or Ongoing Planning, I can provide guidance across all of these areas based on what matters most to you.
+          Whether you choose a Strategy Session, or a Full Financial Plan, I can provide guidance across all of these areas based on what matters most to you.
         </p>
 
         <div class="help-grid">
@@ -505,7 +520,7 @@
       <div class="about-card">
         <div class="about-stamp">Starting at</div>
         <div class="about-price">$225</div>
-        <div class="about-caption">Three service options available</div>
+        <div class="about-caption">Two service options available</div>
         <a class="btn btn-primary full" href="#services">View Services</a>
       </div>
     </div>
@@ -549,7 +564,7 @@
           
           <details>
             <summary>Which service should I choose?</summary>
-            <p>Choose the Strategy Session if you have 1-2 specific questions. Choose the Full Financial Plan if you want a comprehensive written roadmap. Choose Ongoing Planning if you want continued support as your situation evolves.</p>
+            <p>Choose the Strategy Session if you have 1-2 specific questions. Choose the Full Financial Plan if you want a comprehensive written roadmap.</p>
           </details>
 
           <details>
@@ -573,13 +588,8 @@
           </details>
 
           <details>
-            <summary>How does payment work for the Full Financial Plan and Ongoing Planning?</summary>
-            <p>The Full Financial Plan fee ($2,500) is paid in advance before services begin. Ongoing Planning is billed quarterly in advance at $875 per quarter. If you terminate either service early, any unearned fees will be refunded.</p>
-          </details>
-
-          <details>
-            <summary>What's the annual plan update for Ongoing Planning clients?</summary>
-            <p>Clients in the Ongoing Planning Relationship who have previously completed a paid Full Financial Plan may receive an annual update to their original plan once cumulative ongoing fees paid equal or exceed the original Full Plan fee. This update is limited in scope and reflects changes to your circumstances.</p>
+            <summary>How does payment work for the Full Financial Plan?</summary>
+            <p>The Full Financial Plan fee ($2,500) is paid in advance before services begin. If you terminate the service early, any unearned fees will be refunded.</p>
           </details>
 
           <details>
@@ -606,7 +616,7 @@
   <div class="footer-inner">
     <!-- Left: logo + © -->
     <div class="footer-left">
-      <img src="static/ap-icon-64.png" alt="Aerden LLC logo" class="footer-logo">
+      <img src="static/aerdenllcfavicon.png" alt="Aerden LLC logo" class="footer-logo">
       <div>
         <p class="footer-name">Aerden LLC</p>
         <p class="footer-copy">© 2025 Aerden LLC. All rights reserved.</p>
@@ -631,10 +641,10 @@
   </div>
 
   <div class="footer-bottom">
-    <p>Advisory services provided by Aerden LLC (dba Aerden Planning)</p>
+    <p>Advisory services provided by Aerden LLC</p>
     <p>CFP® and CERTIFIED FINANCIAL PLANNER™ are certification marks owned by the Certified Financial Planner Board of Standards, Inc.</p>
     <p>Mallory Warren is authorized by CFP Board to use the CFP® marks in the U.S.</p>
-    <p>Aerden Planning provides advice-only financial planning services and does not provide discretionary investment management.</p>
+    <p>Aerden LLC provides advice-only financial planning services and does not provide discretionary investment management.</p>
   </div>
 </footer>
 
