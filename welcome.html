@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>You're Booked — Aerden LLC</title>
+  <link rel="icon" type="image/png" href="static/aerdenllcfavicon.png">
+  <meta name="description" content="You've booked your Money Strategy Session with Aerden LLC. Complete your intake form to prepare for our time together.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── BASE (matches aerden.llc exactly) ── */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color: #1f2328;
+      background: #faf9f7;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── HEADER (identical to site) ── */
+    .site-header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; z-index: 50; }
+    .header-wrap { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand-logo { width: 40px; height: 40px; display: block; }
+    .brand-name { font-weight: 700; }
+    .brand-tagline { font-size: 12px; color: #687076; }
+    .header-nav { display: flex; align-items: center; gap: 28px; }
+    .header-nav a { font-size: 15px; color: #1f2328; text-decoration: none; font-weight: 500; }
+    .header-nav .book-btn { background: #1e1f21; color: white; padding: 10px 22px; border-radius: 12px; }
+    .menu-toggle { display: none; background: transparent; border: 0; padding: 8px; cursor: pointer; }
+    .menu-toggle span { display: block; width: 24px; height: 2px; background: #111; margin: 4px 0; }
+    .mobile-drawer {
+      display: none; position: absolute; left: 0; right: 0; top: 72px;
+      background: #fff; border-bottom: 1px solid #eee;
+      padding: 12px 20px; flex-direction: column; gap: 12px;
+    }
+    .mobile-drawer a { color: #111; text-decoration: none; font-size: 16px; }
+    .mobile-drawer .book-btn { background: #1e1f21; color: #fff; padding: 10px 14px; border-radius: 12px; display: inline-block; }
+    .mobile-drawer.open { display: flex; }
+    .site-header .container { position: relative; }
+    @media (max-width: 768px) {
+      .brand-text { display: none; }
+      .header-nav { display: none; }
+      .menu-toggle { display: inline-block; }
+    }
+
+    /* ── SHARED ── */
+    .btn { display: inline-block; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 14px; border: 1px solid #1f2328; transition: all 0.2s; cursor: pointer; font-family: inherit; }
+    .btn-primary { background: #1f2328; color: #fff; }
+    .btn-primary:hover { background: #2d3540; }
+    .btn-outline { background: #fff; color: #1f2328; }
+    .btn-outline:hover { background: #f5f5f5; }
+    .section { padding: 56px 0; }
+    .section.alt { background: #fff; }
+    .section-intro { max-width: 620px; margin: 8px auto 28px; text-align: center; color: #3b3f44; }
+
+    /* ── CONFIRMATION HERO ── */
+    .confirm-hero {
+      background: radial-gradient(80% 60% at 50% 0%, #f1f5f1 0%, #faf9f7 60%);
+      padding: 64px 0 56px;
+      text-align: center;
+    }
+    .confirm-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #e8f0e8; border: 1px solid #c2d9c2;
+      color: #2a5a2a; font-size: 13px; font-weight: 600;
+      padding: 7px 18px; border-radius: 999px; margin-bottom: 28px;
+    }
+    .confirm-badge .dot {
+      width: 18px; height: 18px; background: #3a7a3a; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 10px; font-weight: 700; flex-shrink: 0;
+    }
+    .confirm-hero h1 { font-size: clamp(28px, 5vw, 40px); margin: 0 0 14px; line-height: 1.15; }
+    .confirm-hero p { font-size: 17px; color: #3b3f44; max-width: 500px; margin: 0 auto 32px; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .trust-row { margin-top: 20px; font-size: 13px; color: #687076; }
+
+    /* ── EXPECT ── */
+    .expect-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
+    .expect-card { background: #fff; border: 1px solid #eee; border-radius: 16px; padding: 28px 24px; }
+    .expect-num { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #687076; margin-bottom: 12px; text-transform: uppercase; }
+    .expect-card h3 { font-size: 16px; font-weight: 700; margin: 0 0 10px; }
+    .expect-card p { font-size: 14px; color: #3b3f44; line-height: 1.65; margin: 0; }
+
+    /* ── TIMELINE ── */
+    .timeline-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 36px; position: relative; }
+    .timeline-wrap::before { content: ''; position: absolute; top: 20px; left: 12.5%; right: 12.5%; height: 1px; background: #ddd; z-index: 0; }
+    .timeline-step { padding: 0 16px; position: relative; z-index: 1; }
+    .step-dot { width: 40px; height: 40px; border-radius: 50%; background: #1f2328; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin-bottom: 18px; }
+    .step-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #687076; margin-bottom: 6px; }
+    .timeline-step h4 { font-size: 15px; font-weight: 700; margin: 0 0 8px; }
+    .timeline-step p { font-size: 13px; color: #3b3f44; line-height: 1.6; margin: 0; }
+
+    /* ── FORM ── */
+    .form-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px; align-items: start; }
+    .form-sticky { position: sticky; top: 96px; }
+    .form-sticky h2 { margin: 0 0 12px; font-size: 26px; }
+    .form-sticky p { color: #3b3f44; font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+    .privacy-note { background: #f1f5f1; border: 1px solid #c2d9c2; border-radius: 12px; padding: 16px 18px; font-size: 13px; color: #2a5a2a; line-height: 1.6; }
+
+    .intake-form { display: flex; flex-direction: column; gap: 24px; }
+    .form-block-title { font-size: 16px; font-weight: 700; color: #1f2328; padding-bottom: 12px; border-bottom: 1px solid #eee; margin-bottom: 4px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #1f2328; }
+    label .req { color: #b05a00; margin-left: 3px; }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 100%; padding: 11px 14px; border: 1px solid #ddd; border-radius: 10px;
+      font-family: inherit; font-size: 14px; color: #1f2328; background: #fff;
+      outline: none; transition: border-color 0.18s; -webkit-appearance: none; appearance: none;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #1f2328; }
+    textarea { resize: vertical; min-height: 110px; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7'%3E%3Cpath d='M1 1l5 4.5L11 1' stroke='%23687076' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; cursor: pointer;
+    }
+    .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .cb-item { display: flex; align-items: flex-start; gap: 9px; cursor: pointer; }
+    .cb-item input[type="checkbox"] { width: 16px; height: 16px; min-width: 16px; margin-top: 2px; accent-color: #1f2328; cursor: pointer; }
+    .cb-item span { font-size: 13.5px; color: #3b3f44; line-height: 1.5; }
+    .submit-btn { background: #1f2328; color: #fff; font-family: inherit; font-size: 14px; font-weight: 600; padding: 14px 36px; border: none; border-radius: 12px; cursor: pointer; align-self: flex-start; margin-top: 8px; transition: background 0.2s; }
+    .submit-btn:hover { background: #2d3540; }
+
+    #success-msg { display: none; background: #e8f0e8; border: 1px solid #c2d9c2; border-radius: 16px; padding: 40px 32px; text-align: center; }
+    #success-msg h3 { font-size: 22px; margin: 0 0 10px; }
+    #success-msg p { color: #2a5a2a; font-size: 14px; margin: 0; }
+
+    /* ── FOOTER ── */
+    .site-footer { border-top: 1px solid #e0e0e0; padding: 32px 40px 24px; font-size: 14px; color: #404040; background: #fff; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 40px; align-items: flex-start; flex-wrap: wrap; }
+    .footer-left { display: flex; align-items: center; gap: 12px; min-width: 220px; }
+    .footer-logo { width: 32px; height: 32px; border-radius: 8px; }
+    .footer-name { font-weight: 600; margin: 0 0 4px; }
+    .footer-copy { margin: 0; color: #666; }
+    .footer-center h4, .footer-right h4 { margin: 0 0 10px; font-weight: 600; letter-spacing: 0.4px; }
+    .footer-right { min-width: 200px; }
+    .footer-right a { display: block; margin: 3px 0; text-decoration: none; color: #2b4b8c; }
+    .footer-right a:hover { text-decoration: underline; }
+    .footer-bottom { margin-top: 24px; font-size: 12px; color: #777; }
+    .footer-bottom p { margin: 2px 0; }
+    .contact-link { color: #2b4b8c; text-decoration: none; font-size: 15px; }
+    .contact-link:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .expect-grid { grid-template-columns: 1fr; }
+      .timeline-wrap { grid-template-columns: 1fr 1fr; }
+      .timeline-wrap::before { display: none; }
+      .form-layout { grid-template-columns: 1fr; gap: 40px; }
+      .form-sticky { position: static; }
+      .form-row-2, .checkbox-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .confirm-hero { padding: 48px 0 40px; }
+      .section { padding: 40px 0; }
+      .timeline-wrap { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 24px; }
+      .site-footer { padding: 28px 20px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="container header-wrap">
+    <div class="brand">
+      <img src="static/aerdenllcfavicon.png" alt="Aerden logo" class="brand-logo">
+      <div class="brand-text">
+        <div class="brand-name">Aerden LLC</div>
+        <div class="brand-tagline">Simple financial advice, built around you.</div>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="https://calendly.com/aerdenllc/60min" target="_blank" class="book-btn">Book Now</a>
+    </nav>
+    <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav id="mobile-menu" class="mobile-drawer">
+    <a href="index.html">Home</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#about">About</a>
+    <a href="https://calendly.com/aerdenllc/60min" target="_blank" class="book-btn">Book Now</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ── HERO ── -->
+  <section class="confirm-hero">
+    <div class="container">
+      <div class="confirm-badge">
+        <div class="dot">✓</div>
+        Payment confirmed &amp; booking received
+      </div>
+      <h1>You just took a great step<br>toward financial clarity.</h1>
+      <p>Before we meet, please take 5–10 minutes to complete your intake form. The more context I have, the more valuable our time together will be.</p>
+      <div class="cta-row">
+        <a href="#intake" class="btn btn-primary">Complete my intake →</a>
+        <a href="#expect" class="btn btn-outline">What to expect</a>
+      </div>
+     
+    </div>
+  </section>
+
+  <!-- ── WHAT TO EXPECT ── -->
+  <section class="section alt" id="expect">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:8px;">What to expect</h2>
+      <p class="section-intro">This session is focused, practical, and built around you.</p>
+      <div class="expect-grid">
+        <div class="expect-card">
+          <p class="expect-num">01 &nbsp;—&nbsp; Your session</p>
+          <h3>A real conversation</h3>
+          <p>I'll review your intake answers ahead of time so we can get straight into your situation the moment we connect.</p>
+        </div>
+        <div class="expect-card">
+          <p class="expect-num">02 &nbsp;—&nbsp; What you'll get</p>
+          <h3>Clarity and concrete next steps</h3>
+          <p>You'll walk away knowing exactly where you stand and what to prioritize — no more overwhelm or wondering where to start.</p>
+        </div>
+        <div class="expect-card">
+          <p class="expect-num">03 &nbsp;—&nbsp; The vibe</p>
+          <h3>Judgment-free, always</h3>
+          <p>Debt, a late start, financial regret, no shame here. I've seen it all. We're only moving forward from where you are right now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TIMELINE ── -->
+  <section class="section" id="timeline">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom:8px;">What happens next</h2>
+      <p class="section-intro">Here's the roadmap from booking to after the meeting.</p>
+      <div class="timeline-wrap">
+        <div class="timeline-step">
+          <div class="step-dot">1</div>
+          <p class="step-tag">Right now</p>
+          <h4>Complete the intake</h4>
+          <p>Fill out the form below. Honest answers = a better session. Takes about 5–10 minutes.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot">2</div>
+          <p class="step-tag">Before we meet</p>
+          <h4>I review your answers</h4>
+          <p>I'll read through everything and come prepared with observations specific to your situation.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot">3</div>
+          <p class="step-tag">Your session</p>
+          <h4>We dig in together</h4>
+          <p>A focused, candid 60-minute conversation. Just what matters most given your goals.</p>
+        </div>
+        <div class="timeline-step">
+          <div class="step-dot">4</div>
+          <p class="step-tag">After our call</p>
+          <h4>Your written summary</h4>
+          <p>You'll receive key takeaways and prioritized next steps in writing so you can act with confidence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTAKE FORM ── -->
+  <section class="section alt" id="intake">
+    <div class="container">
+      <div class="form-layout">
+
+        <div class="form-sticky">
+          <h2>Tell me about you.</h2>
+          <p>The more context you share, the more valuable our session will be. There are no wrong answers — just be honest with yourself and with me.</p>
+          <div class="privacy-note">
+            🔒 Everything you share is kept strictly confidential and used only to prepare for our session.
+          </div>
+        </div>
+
+        <div>
+          <form class="intake-form" id="intakeForm" onsubmit="handleSubmit(event)" novalidate>
+
+            <p class="form-block-title">The basics</p>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="firstName">First name <span class="req">*</span></label>
+                <input type="text" id="firstName" name="firstName" required placeholder="Jane" />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last name <span class="req">*</span></label>
+                <input type="text" id="lastName" name="lastName" required placeholder="Smith" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email address <span class="req">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="jane@email.com" />
+            </div>
+
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="age">Age range <span class="req">*</span></label>
+                <select id="age" name="age" required>
+                  <option value="" disabled selected>Select</option>
+                  <option>Under 25</option>
+                  <option>25–30</option>
+                  <option>31–35</option>
+                  <option>36–40</option>
+                  <option>41–45</option>
+                  <option>46–50</option>
+                  <option>50+</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="employment">Employment status</label>
+                <select id="employment" name="employment">
+                  <option value="" disabled selected>Select</option>
+                  <option>Employed full-time</option>
+                  <option>Self-employed / freelance</option>
+                  <option>Part-time</option>
+                  <option>Between jobs</option>
+                  <option>Student</option>
+                  <option>Other</option>
+                  <option>Retired</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="income">Annual household income</label>
+              <select id="income" name="income">
+                <option value="" disabled selected>Select</option>
+                <option>Under $40k</option>
+                <option>$40k–$60k</option>
+                <option>$60k–$80k</option>
+                <option>$80k–$100k</option>
+                <option>$100k–$150k</option>
+                <option>$150k–$200k</option>
+                <option>$200k+</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+
+            <p class="form-block-title">Your money story</p>
+
+            <div class="form-group">
+              <label for="biggestChallenge">What's your biggest money challenge right now? <span class="req">*</span></label>
+              <textarea id="biggestChallenge" name="biggestChallenge" required placeholder="Be as specific as you'd like. Nothing is off-limits."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="goals">What are your top 1–3 financial goals in the next 1–3 years? <span class="req">*</span></label>
+              <textarea id="goals" name="goals" required placeholder="E.g. pay off debt, buy a home, start investing, build financial literacy, build an emergency fund..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Which topics apply to your situation? (check all that apply)</label>
+              <div class="checkbox-grid">
+                <label class="cb-item"><input type="checkbox" name="topics" value="debt" /><span>Debt payoff / management</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="investing" /><span>Investing &amp; building wealth</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="emergency-fund" /><span>Building an emergency fund</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="budgeting" /><span>Budgeting &amp; cash flow</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="homebuying" /><span>Home buying / real estate</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="retirement" /><span>Retirement planning</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="self-employed" /><span>Self-employment finances</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="life-change" /><span>Investing for kids / 529s</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="401k" /><span>401(k) or rollover questions</span></label>
+                <label class="cb-item"><input type="checkbox" name="topics" value="kids" /><span>Big life change (marriage, baby, divorce, job)</span></label>
+              </div>
+            </div>
+
+            <p class="form-block-title">Your mindset &amp; starting point</p>
+
+            <div class="form-group">
+              <label for="relationship">How would you describe your relationship with money right now?</label>
+              <select id="relationship" name="relationship">
+                <option value="" disabled selected>Select</option>
+                <option>Anxious — it stresses me out</option>
+                <option>Avoidant — I'd rather not think about it</option>
+                <option>Motivated but overwhelmed — I want to do better</option>
+                <option>Pretty in control — here to optimize</option>
+                <option>Confident — looking for a second opinion or specific guidance</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="priorAdvice">Have you worked with a financial advisor or planner before?</label>
+              <select id="priorAdvice" name="priorAdvice">
+                <option value="" disabled selected>Select</option>
+                <option>No — this is my first time</option>
+                <option>Yes, and it was helpful</option>
+                <option>Yes, but I didn't find it that useful</option>
+                <option>I've done a lot of self-study but no 1:1 guidance</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="howHeard">How did you find me?</label>
+              <select id="howHeard" name="howHeard">
+                <option value="" disabled selected>Select</option>
+                <option>TikTok (@downtoinvest)</option>
+                <option>Instagram (@downtoinvest)</option>
+                <option>Referral from a friend</option>
+                <option>Google / web search</option>
+                <option>LinkedIn</option>
+                <option>ETF Insight</option>
+                <option>Other</option>
+              </select>
+            </div>
+                   <p class="form-block-title">Your financial situation</p>
+
+            <div class="form-group">
+              <label>Do any of these apply to your situation? (check all that apply)</label>
+              <div class="checkbox-grid">
+                <label class="cb-item"><input type="checkbox" name="complexity" value="equity-comp" /><span>Divorce or separation</span></label>
+                <label class="cb-item"><input type="checkbox" name="complexity" value="business-owner" /><span>Business ownership</span></label>
+                <label class="cb-item"><input type="checkbox" name="complexity" value="inheritance" /><span>Inheritance or trust</span></label>
+                <label class="cb-item"><input type="checkbox" name="complexity" value="tax-complexity" /><span>Complex tax situation</span></label>
+                <label class="cb-item"><input type="checkbox" name="complexity" value="divorce" /><span>Equity compensation (RSUs, stock options, ESOP)</span></label>
+                <label class="cb-item"><input type="checkbox" name="complexity" value="none" /><span>None of the above</span></label>
+              </div>
+            </div>
+
+            <p class="form-block-title">Anything else?</p>
+
+            <div class="form-group">
+              <label for="extra">What would you like to cover during our session, or anything I should know before our session?</label>
+              <textarea id="extra" name="extra" placeholder="No pressure — just anything that feels important to share that will help me prepare."></textarea>
+            </div>
+              <div style="background:#f9f8f6; border:1px solid #eee; border-radius:12px; padding:18px 20px; font-size:13px; color:#3b3f44; line-height:1.7;">
+              <strong style="color:#1f2328;">A note before we meet:</strong> Based on your intake, I may reach out via email with a clarifying question or two to make sure we can hit the ground running. These communications are included — there is no additional charge for any email exchange prior to your session.
+            </div>
+
+            <button type="submit" class="submit-btn">Submit my intake →</button>
+          </form>
+
+          <div id="success-msg">
+            <h3>You're all set ✓</h3>
+            <p>I received your intake and I'll come fully prepared for our session. See you soon!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <img src="static/aerdenllcfavicon.png" alt="Aerden LLC logo" class="footer-logo">
+      <div>
+        <p class="footer-name">Aerden LLC</p>
+        <p class="footer-copy">© 2025 Aerden LLC. All rights reserved.</p>
+      </div>
+    </div>
+    <div class="footer-center">
+      <h4>Contact Us</h4>
+      <a href="contact.html" class="contact-link">Send a Message</a>
+    </div>
+    <div class="footer-right">
+      <h4>Disclosures</h4>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms and Legal Disclaimers</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>Advisory services provided by Aerden LLC</p>
+    <p>CFP® and CERTIFIED FINANCIAL PLANNER™ are certification marks owned by the Certified Financial Planner Board of Standards, Inc.</p>
+    <p>Mallory Warren is authorized by CFP Board to use the CFP® marks in the U.S.</p>
+    <p>Aerden LLC provides advice-only financial planning services and does not provide discretionary investment management.</p>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav
+  const menuBtn = document.querySelector('.menu-toggle');
+  const drawer = document.getElementById('mobile-menu');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = drawer.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && drawer.classList.contains('open')) {
+      drawer.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      drawer.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('intakeForm');
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.topics = [...form.querySelectorAll('input[name="topics"]:checked')].map(c => c.value);
+    fetch('https://formspree.io/f/mbdanjee', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(res => {
+      if (res.ok) {
+        form.style.display = 'none';
+        const msg = document.getElementById('success-msg');
+        msg.style.display = 'block';
+        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        alert('Something went wrong — please try again or email me directly.');
+      }
+    })
+    .catch(() => alert('Something went wrong — please try again.'));
+  }
+</script>
+
+</body>
+</html>
